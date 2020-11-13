@@ -6,6 +6,9 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Stream;
 
+import static java.util.Arrays.stream;
+import static refactoring.Rover.Order.*;
+
 public class Rover {
 
 	private ViewPoint viewPoint;
@@ -36,31 +39,39 @@ public class Rover {
 
 	Map<Order, Action> actions = new HashMap<>();
 	{
-		actions.put(Order.Forward, () -> viewPoint.forward());
-		actions.put(Order.Backward, () -> viewPoint.backward());
-		actions.put(Order.Left, () -> viewPoint.turnLeft());
-		actions.put(Order.Right, () -> viewPoint.turnRight());
+		actions.put(Forward, ViewPoint::forward);
+		actions.put(Backward, ViewPoint::backward);
+		actions.put(Left, ViewPoint::turnLeft);
+		actions.put(Right, ViewPoint::turnRight);
 	}
 
 	@FunctionalInterface
 	public interface Action {
-		void execute();
+		ViewPoint execute(ViewPoint viewPoint);
+	}
+
+	private void set(ViewPoint vp){
+		if(vp == null) return;
+		viewPoint = vp;
 	}
 
 	public void go(String instructions){
-		Stream<Order> orders = Arrays.stream(instructions.split("")).map(Order::of).filter(Objects::nonNull);
-		orders.forEach(order -> actions.get(order).execute());
+		set(go(Arrays.stream(instructions.split("")).map(Order::of)));
 	}
 
 	public void go(Order... orders){
-		for (Order order: orders) execute(order);
+		set(go(stream(orders)));
 	}
 
-	private void execute(Order order) {
-		actions.get(order).execute();
+	private ViewPoint go(Stream<Order> orders) {
+		return orders.filter(Objects::nonNull)
+				.reduce(viewPoint, this::execute, (v1,v2)->null);
 	}
 
-
+	private ViewPoint execute(ViewPoint viewPoint, Order order) {
+		if(viewPoint == null) return null;
+		return actions.get(order).execute(viewPoint);
+	}
 
 
 

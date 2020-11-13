@@ -1,27 +1,27 @@
 package com.codemanship.marsrover;
 
 import org.junit.Test;
-import refactoring.ViewPoint.Heading;
+import refactoring.SimpleViewPoint;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static refactoring.ViewPoint.Heading.*;
+import static refactoring.SimpleViewPoint.Heading.*;
 
 public class Heading_ {
 
 	@Test
 	public void should_be_created_from_string() {
-		assertThat(Heading.of("N")).isEqualTo(North);
-		assertThat(Heading.of("S")).isEqualTo(South);
-		assertThat(Heading.of("E")).isEqualTo(East);
-		assertThat(Heading.of("W")).isEqualTo(West);
+		assertThat(SimpleViewPoint.Heading.of("N")).isEqualTo(North);
+		assertThat(SimpleViewPoint.Heading.of("S")).isEqualTo(South);
+		assertThat(SimpleViewPoint.Heading.of("E")).isEqualTo(East);
+		assertThat(SimpleViewPoint.Heading.of("W")).isEqualTo(West);
 	}
 
 	@Test
 	public void should_be_created_from_char() {
-		assertThat(Heading.of('N')).isEqualTo(North);
-		assertThat(Heading.of('S')).isEqualTo(South);
-		assertThat(Heading.of('E')).isEqualTo(East);
-		assertThat(Heading.of('W')).isEqualTo(West);
+		assertThat(SimpleViewPoint.Heading.of('N')).isEqualTo(North);
+		assertThat(SimpleViewPoint.Heading.of('S')).isEqualTo(South);
+		assertThat(SimpleViewPoint.Heading.of('E')).isEqualTo(East);
+		assertThat(SimpleViewPoint.Heading.of('W')).isEqualTo(West);
 	}
 
 	@Test
