@@ -15,12 +15,12 @@ public class CameraViewPoint implements ViewPoint{
 
     @Override
     public ViewPoint forward() {
-        return this;
+        return null;
     }
 
     @Override
     public ViewPoint backward() {
-        return this;
+        return null;
     }
 
     @Override
