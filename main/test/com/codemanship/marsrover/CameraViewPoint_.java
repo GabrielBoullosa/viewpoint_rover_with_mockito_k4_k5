@@ -34,10 +34,5 @@ public class CameraViewPoint_ {
         CameraViewPoint cameraViewPoint = new CameraViewPoint(camera, imageProcessor);
         cameraViewPoint.turnRight();
         verify(camera).turnRight(90);
-
-        ViewPoint viewPoint = initialViewPoint.turnLeft();
-        assertThat(viewPoint).isNotNull();
-        assertThat(viewPoint).isNotEqualTo(initialViewPoint);
-        verify(initialViewPoint.camera()).turnLeft(90);
     }
 }
