@@ -1,22 +1,16 @@
 package refactoring;
 
 public class CameraViewPoint implements ViewPoint{
-    private int angle;
     private Camera camera;
-    private ImageProcessor ImageProcessor;
+    private ImageProcessor imageProcessor;
 
-    public CameraViewPoint(int angle, Camera camera, refactoring.ImageProcessor imageProcessor) {
-        this.angle = angle;
+    public CameraViewPoint(Camera camera, refactoring.ImageProcessor imageProcessor) {
         this.camera = camera;
-        ImageProcessor = imageProcessor;
+        this.imageProcessor = imageProcessor;
     }
 
-    public int angle() {
-        return angle;
-    }
-
-    public void angleChange(int angle) {
-        this.angle += angle;
+    public Camera camera() {
+        return camera;
     }
 
     @Override
@@ -31,14 +25,14 @@ public class CameraViewPoint implements ViewPoint{
 
     @Override
     public ViewPoint turnLeft(){
-        angleChange(90);
-        return this;
+        camera.turnLeft(90);
+        return new CameraViewPoint(camera, imageProcessor);
     }
 
     @Override
     public ViewPoint turnRight() {
-        angleChange(-90);
-        return this;
+        camera.turnRight(90);
+        return new CameraViewPoint(camera, imageProcessor);
     }
 
 
