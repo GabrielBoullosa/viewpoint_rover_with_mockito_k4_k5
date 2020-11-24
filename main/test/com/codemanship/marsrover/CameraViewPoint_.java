@@ -21,7 +21,7 @@ public class CameraViewPoint_ {
     }
 
     @Test
-    public void should_be_created_from_string() {
+    public void when_turning_left_should_return_a_new_point() {
         ViewPoint viewPoint = initialViewPoint.turnLeft();
         assertThat(viewPoint).isNotNull();
         assertThat(viewPoint).isNotEqualTo(initialViewPoint);
