@@ -5,6 +5,14 @@ public class Camera {
     private CameraView rearView;
     private int angle;
 
+    public Camera() {
+        angle = 0;
+    }
+
+    public Camera(int angle) {
+        this.angle = angle;
+    }
+
     public Camera turnLeft(int angle) {
         this.angle += angle;
         return this;
